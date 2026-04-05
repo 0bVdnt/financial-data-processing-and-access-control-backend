@@ -77,3 +77,35 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: UserResponse
+
+
+# -------------------------------------------------------
+# User management schemas (Admin operations)
+# -------------------------------------------------------
+
+
+class UpdateUserRoleRequest(BaseModel):
+    """Schema for updating a user's role. Admin only."""
+
+    role: Role
+    model_config = {"extra": "forbid"}
+
+
+class UpdateUserStatusRequest(BaseModel):
+    """Schema for activating/deactivating a user. Admin only."""
+
+    is_active: bool
+    model_config = {"extra": "forbid"}
+
+
+class UserListParams(BaseModel):
+    """Query parameters for listing users with optional filters."""
+
+    role: Role | None = None
+    is_active: bool | None = None
+    page: int = Field(1, ge=1)
+    per_page: int = Field(20, ge=1, le=100)
+
+    @property
+    def offset(self) -> int:
+        return (self.page - 1) * self.per_page
