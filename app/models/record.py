@@ -47,7 +47,9 @@ class FinancialRecord(Base):
     description: Mapped[str | None] = mapped_column(Text, default=None)
     date: Mapped[date] = mapped_column(Date, index=True)
     is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
-    created_at: Mapped[datetime] = mapped_column(Boolean, default=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
@@ -56,4 +58,4 @@ class FinancialRecord(Base):
     user: Mapped["User"] = relationship(back_populates="records")
 
     def __repr__(self) -> str:
-        return f"<Record {self.type} {self.amount} {self.category}"
+        return f"<Record {self.type} {self.amount} {self.category}>"

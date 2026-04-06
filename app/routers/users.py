@@ -112,6 +112,4 @@ async def update_user_status(
 ):
     service = UserService(db)
     updated_user = await service.update_status(user_id, data, current_user)
-
-    action = "activated" if data.is_active else "deactivated"
     return ApiResponse(success=True, data=UserResponse.model_validate(updated_user))

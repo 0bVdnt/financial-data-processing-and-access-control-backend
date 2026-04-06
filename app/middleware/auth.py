@@ -13,7 +13,7 @@ from app.models.user import User
 from app.repositories.user_repository import UserRepository
 
 # HTTPBearer extracts the token from "Authorization: Bearer <token>"
-# auto_error=False in order to provide custome messages
+# auto_error=False in order to provide custom messages
 bearer_schema = HTTPBearer(auto_error=False)
 
 

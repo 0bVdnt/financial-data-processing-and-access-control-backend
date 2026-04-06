@@ -7,7 +7,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 class Role(str, Enum):
     """
-    User roles with there priviledges.
+    User roles with their privileges.
 
     Viewer: Can view dashboard data and own records.
     Analyst: Can view records and access insights/summaries

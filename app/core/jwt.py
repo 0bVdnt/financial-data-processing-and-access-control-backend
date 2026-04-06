@@ -12,7 +12,7 @@ def create_access_token(user_id: UUID, role: str) -> str:
 
     The token contains:
         - sub: userID (subject)
-        - role: user's role for quick access in middlware
+        - role: user's role for quick access in middleware
         - exp: expiration timestamp
         - iat: issued at timestamp
     """

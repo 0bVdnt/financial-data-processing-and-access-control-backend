@@ -14,7 +14,7 @@ async def health_check(db: AsyncSession = Depends(get_db)):
     Returns the health status of the API and its dependencies.
     Used by monitoring tools and container orchestrator
     """
-    Settings = get_settings()
+    settings = get_settings()
     db_status = "healthy"
 
     try:
@@ -28,7 +28,7 @@ async def health_check(db: AsyncSession = Depends(get_db)):
         "success": True,
         "data": {
             "status": "healthy" if is_healthy else "degraded",
-            "app_name": Settings.APP_NAME,
+            "app_name": settings.APP_NAME,
             "checks": {"database": db_status},
         },
     }

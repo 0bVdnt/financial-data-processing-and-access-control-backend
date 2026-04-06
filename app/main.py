@@ -18,8 +18,8 @@ def create_app() -> FastAPI:
         title=settings.APP_NAME,
         description=(
             "Backend API for a finance dashboard system with "
-            "role-based acess control, financial record managemnet, "
-            "and summary anlytics."
+            "role-based access control, financial record management, "
+            "and summary analytics."
         ),
         version="1.0.0",
         docs_url="/docs",
@@ -34,7 +34,7 @@ def create_app() -> FastAPI:
     app.include_router(auth.router, prefix="/api/v1")
     app.include_router(users.router, prefix="/api/v1")
 
-    logger.info(f"Applications '{settings.APP_NAME}' initialized")
+    logger.info(f"Application '{settings.APP_NAME}' initialized")
     return app
 
 
